@@ -2,7 +2,7 @@ const Balance = ({balance}) =>{
     return(
         <div>
             
-        {balance}
+        Поточний баланс: {balance}
             </div>
     )
 }

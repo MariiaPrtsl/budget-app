@@ -1,40 +1,50 @@
 import { Component } from "react";
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   constructor() {
     super();
-
-    this.state={
-        value:""
+    
+    this.state ={
+        value: ''
     }
+
   }
   onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     this.props.onChange(this.state.value);
+    this.setState({
+        value:''
+    })
    };
 
-  onChange =(e) =>{
-const {value} = e.target.value;
+onChange = (e) => {
+const {value} = e.target;
 
 this.setState({
     value
 })
-  }
+}
+
 
   render() {
     return (
       <form onSubmit={this.onSubmit}>
         <input name="balance" 
-        placeholder="Сума" 
-        type="number"
-        value={this.state.value}
-        onChange={this.onChange}/>
+        placeholder="Сума"
+        type = "number"
+        onChange={this.onChange}
+        value={this.state.value}/> 
         <button>Зберегти</button>
       </form>
       
     );
   }
 }
+Form.propTypes = {
+    onChange: PropTypes.func
+}
+
 
 export default Form;

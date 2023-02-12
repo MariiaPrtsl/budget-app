@@ -3,7 +3,7 @@ import Balance from "../Balance";
 import Transactions from "../Transactions";
 import Form from "../Form";
 
-let id = 0;
+//let id = 0;
 
 class App extends Component {
  constructor(){
@@ -28,12 +28,12 @@ this.setState((state)=>({
 
     render() {
     return (
-      <div>
+      <>
         <Balance balance = {this.state.balance} />
           <Form onChange={this.onChange}/>
 <hr/>
 <Transactions transactions ={this.state.transactions}/>
-      </div>
+      </>
     );
   }
 }
