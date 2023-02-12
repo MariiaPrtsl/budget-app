@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component } from 'react';
 import Balance from "../Balance";
 import Transactions from "../Transactions";
 import Form from "../Form";
@@ -12,40 +12,25 @@ class App extends Component {
         balance:0,
         transactions:[]
     }
-    this.onIncrease = this.onIncrease.bind(this);
+    this.onChange = this.onChange.bind(this);
     console.log('constructor')
  }
 
- onIncrease (){
-    this.setState((state)=>({
-        balance: state.balance + 1,
-        transactions: [{
-            label: 'increase',
-            value:1,
-            id: ++id
-        },
-        ...state.transactions]
-    }))
- }
+ 
+onChange = (value) => {
+this.setState((state)=>({
+  balance: state.balance + Number(value),
+  transactions: [{value, label: 'change'}, ...state.transactions]
+}))
+}
 
- onDecrease =()=>{
-    this.setState((state)=>({
-        balance: state.balance - 1,
-        transactions: [{
-            label: 'decrease',
-            value:-1,
-            id: ++id
-        },
-        ...state.transactions]
-    }))
-     }
 
 
     render() {
     return (
       <div>
         <Balance balance = {this.state.balance} />
-          <Form/>
+          <Form onChange={this.onChange}/>
 <hr/>
 <Transactions transactions ={this.state.transactions}/>
       </div>

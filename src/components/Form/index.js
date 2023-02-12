@@ -5,15 +5,21 @@ class Form extends Component {
     super();
 
     this.state={
-        value:0
+        value:""
     }
   }
   onSubmit = (e) => {
     e.preventDefault()
-  };
+
+    this.props.onChange(this.state.value);
+   };
 
   onChange =(e) =>{
+const {value} = e.target.value;
 
+this.setState({
+    value
+})
   }
 
   render() {
@@ -22,6 +28,7 @@ class Form extends Component {
         <input name="balance" 
         placeholder="Сума" 
         type="number"
+        value={this.state.value}
         onChange={this.onChange}/>
         <button>Зберегти</button>
       </form>
