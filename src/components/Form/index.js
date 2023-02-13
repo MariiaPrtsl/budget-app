@@ -23,7 +23,7 @@ onChange = (e) => {
 const {value} = e.target;
 
 this.setState({
-    value
+    value: +value
 })
 }
 
