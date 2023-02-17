@@ -1,12 +1,14 @@
 import { Component } from "react";
 import PropTypes from 'prop-types';
-
+import {Wrapper, Input, Row, Button, Comment} from './styles'
 class Form extends Component {
   constructor() {
     super();
     
     this.state ={
-        value: ''
+        value: '',
+        date: new Date().toISOString().substring(0,10) ,
+        comment:''
     }
 
   }
@@ -20,25 +22,38 @@ class Form extends Component {
    };
 
 onChange = (e) => {
-const {value} = e.target;
+const {value, name} = e.target;
 
 this.setState({
-    value: +value
+    [name]: name === 'balance' ? +value : value
 })
 }
 
 
   render() {
     return (
+      <Wrapper>
       <form onSubmit={this.onSubmit}>
-        <input name="balance" 
+        <Row>
+        <Input type = "date"
+        name = "date"
+        value ={this.state.data}
+        onChange={this.onChange} />
+        
+        <Input name="value" 
         placeholder="Сума"
         type = "number"
         onChange={this.onChange}
         value={this.state.value}/> 
-        <button>Зберегти</button>
+        </Row>
+<Row>
+        <Comment name="comment"
+        value = {this.state.comment}
+        onChange={this.onChange}/>
+        <Button>Зберегти</Button>
+        </Row>
       </form>
-      
+      </Wrapper>
     );
   }
 }
