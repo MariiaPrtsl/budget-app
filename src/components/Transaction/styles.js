@@ -5,7 +5,25 @@ export const Wrapper = styled.div`
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   padding: 5px;
-  margin: 5px;
+  margin-bottom: 10px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 Wrapper.displayName = 'TransactionWrapper'
+
+export const TransactionDate = styled.div`
+flex-grow: 1;
+`
+TransactionDate.displayName='TransactionDate'
+
+export const Value = styled.div`
+flex-grow: 1;
+`
+Value.displayName='Value'
+
+export const Comment = styled.div`
+flex-grow: 2;
+`
+Comment.displayName='Comment'
