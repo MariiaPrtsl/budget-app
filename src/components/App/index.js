@@ -1,55 +1,24 @@
-import React from "react";
-import { Wrapper, GlobalStyle } from "./styles";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Home from "../Home";
-import About from "../About";
-import Statistics from "../Statistics";
-import Header from '../Header';
-import { open } from '../../utils/indexdb';
+ import React, {useContext, Profiler} from 'react';
+import { ThemeProvider } from 'react-ui';
+import App from './app';
+import {AppContext} from '../../providers/context';
+import { getTheme } from '../../providers/getTheme';
+import { IntlAppProvider } from '../../providers/i18n';
 
+export default () => {
+    const {state, dispatch} = useContext(AppContext);
 
+    const onRender = (...data) => {
+        console.log(data);
+    };
 
-class App extends React.Component {
-  constructor(props) {
-      super(props);
-
-      this.state = {
-          loading: true
-      }
-  }
-
-  componentDidMount() {
-      open().then(() => {
-          this.setState({
-              loading: false
-          })
-      }).catch(() => {
-          console.error('Помилка')
-      });
-  }
-
-  render() {
-      if (this.state.loading) {
-          return <div>Loading...</div>
-      };
-
-      return (
-          <Router>
-              <Wrapper>
-                  <GlobalStyle/>
-                  
-                      <Header/>
-  
-                      <Routes>
-                          <Route path="/about" element={<About />} /> 
-                          <Route path="/statistics" element={ <Statistics />}/>
-                          <Route path="/" element={ <Home />} />
-                        </Routes>
-              </Wrapper>
-          </Router>
-      )
-  }
-  
+    return (
+        <ThemeProvider theme={getTheme(state.themeName)}>
+            <IntlAppProvider>
+                <Profiler id="app" onRender={onRender}>
+                    <App/>
+                </Profiler>
+            </IntlAppProvider>
+        </ThemeProvider>
+    )
 }
-
-export default App;
