@@ -9,6 +9,9 @@ import { open } from '../../utils/indexdb';
 import Settings from '../Settings'
 
 
+
+//const Statistics = lazy(() => import('../Statistics'));
+
 class App extends React.Component {
   constructor(props) {
       super(props);

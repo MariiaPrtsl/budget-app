@@ -1,8 +1,8 @@
  import React, {useContext, Profiler} from 'react';
-import { ThemeProvider } from 'react-ui';
+import { ThemeProvider } from 'styled-components';
 import App from './app';
 import {AppContext} from '../../providers/context';
-import { getTheme } from '../../providers/getTheme';
+import { getTheme} from '../../providers/themes/getTheme'
 import { IntlAppProvider } from '../../providers/i18n';
 
 export default () => {
@@ -14,11 +14,13 @@ export default () => {
 
     return (
         <ThemeProvider theme={getTheme(state.themeName)}>
+            
             <IntlAppProvider>
                 <Profiler id="app" onRender={onRender}>
                     <App/>
                 </Profiler>
             </IntlAppProvider>
+            
         </ThemeProvider>
     )
 }

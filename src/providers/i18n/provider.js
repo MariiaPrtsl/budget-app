@@ -5,7 +5,7 @@ import flatten from 'flat'
 import { AppContext } from '../context';
 
 import messages from './messages';
-import {LOCALES} from './constants';
+import { LOCALES } from './constans';
 
 const IntlAppProvider = ({children}) => {
     const {state} = useContext(AppContext);

@@ -1,4 +1,4 @@
-import { LOCALES } from '../constants';
+import { LOCALES } from "../constans"
 
 export default {
     [LOCALES.ENGLISH]: {
